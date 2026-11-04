@@ -2,7 +2,7 @@
 
 A macOS menu bar button that keeps your Mac awake. One click on, one click off.
 
-One Swift file, no dependencies, no network access. Same sleep assertion as `caffeinate -i`, without a terminal left open.
+One Swift file, no dependencies, no network access. Same sleep assertions as `caffeinate -di`, without a terminal left open.
 
 ## Install
 
@@ -21,7 +21,7 @@ Built on macOS 27. The APIs it calls exist since macOS 12, but older versions ha
 | Action | Result |
 | --- | --- |
 | Click the cup | Toggle |
-| Right click | Show the state, or quit |
+| Right click | Show the state, choose whether the display stays on, or quit |
 
 A filled orange cup means the Mac is kept awake. An outlined cup means normal sleep settings apply.
 
@@ -29,8 +29,8 @@ Menu and tooltip labels are in French.
 
 ## What it does and does not do
 
-- It holds a `PreventUserIdleSystemSleep` assertion, which blocks idle system sleep.
-- The display can still turn off.
+- By default the display stays on and the Mac does not idle sleep (`PreventUserIdleDisplaySleep` and `PreventUserIdleSystemSleep`). With the display on, your session no longer locks by itself when you walk away, and the battery drains faster.
+- Uncheck "Garder l'écran allumé" in the right-click menu to let the display turn off while the Mac keeps running (`PreventUserIdleSystemSleep` only). The choice applies immediately and is remembered across launches.
 - Closing the lid still puts the Mac to sleep.
 - It stays active on battery until you turn it off.
 - It always starts turned off, so a forgotten toggle does not survive a restart.
